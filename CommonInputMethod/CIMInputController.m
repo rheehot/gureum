@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 #define DEBUG_INPUTCONTROLLER FALSE
 #define DEBUG_LOGGING FALSE
 
-#define CIMSharedInputManager CIMAppDelegate.sharedInputManager
 #define CIMAppDelegate ((NSObject<CIMApplicationDelegate> *)[[NSApplication sharedApplication] delegate])
 
 TISInputSource *_USSource() {
@@ -85,6 +84,7 @@ TISInputSource *_USSource() {
     BOOL hadComposedString = self._internalComposedString.length > 0;
     CIMInputTextProcessResult handled = [CIMSharedInputManager inputController:controller inputText:string key:keyCode modifiers:flags client:sender];
 
+    
     CIMSharedInputManager.inputting = YES;
 
     switch (handled) {

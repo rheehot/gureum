@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define DEBUG_INPUTHANDLER FALSE
+#define DEBUG_INPUTHANDLER TRUE
 
 @implementation CIMInputHandler
 @synthesize manager;
@@ -87,6 +87,7 @@ finalize:
     dlog(FALSE, @"******* FINAL STATE: %d", result);
     // 합성 후보가 있다면 보여준다
     if (controller.composer.hasCandidates) {
+        dlog(DEBUG_INPUTHANDLER, @"showing candidates");
         IMKCandidates *candidates = self.manager.candidates;
         [candidates updateCandidates];
         [candidates show:kIMKLocateCandidatesLeftHint];

@@ -157,7 +157,7 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
                 } else if flags.rawValue == 0 && self.delegate === hangulComposer {
                     need_exchange = true
                 } else {
-                    return CIMInputTextProcessResult.processed
+                    return .processed
                 }
             }
         }
@@ -201,6 +201,9 @@ let GureumInputSourceToHangulKeyboardIdentifierTable: [String: String] = [
         if self.delegate === hanjaComposer {
             if !hanjaComposer.mode && hanjaComposer.composedString.count == 0 && hanjaComposer.commitString.count == 0 {
                 // 한자 입력이 완료되었고 한자 모드도 아님
+                dlog(true, "exiting to hangul composer")
+                self.hanjaComposer._candidates = nil
+                self.manager.candidates.hide()
                 self.delegate = hangulComposer
             }
         }
