@@ -17,5 +17,10 @@ if nib.instantiate(withOwner: NSApplication.shared, topLevelObjects: nil) == fal
 }
 
 dlog(true, "****   Main bundle \(mainNibName) loaded   ****")
+var bundle = Bundle.main
+//bundle.infoDictionary!.removeValue(forKey: "ComponentInputModeDict")
+Bundle.patchInfoDictionary()
+print(bundle.infoDictionary!)
+print(bundle.infoDictionary!["ComponentInputModeDict"])
 NSApplication.shared.run()
 dlog(true, "******* Gureum finalized! *******")
